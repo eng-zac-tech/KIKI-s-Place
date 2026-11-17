@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiki's Place | Home of Delicacies — Ruiru</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,700;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ── THEME TOKENS ── */
+:root{
+  --fire:#FF4500;--gold:#F5A623;--ember:#C0392B;
+
+  /* DARK (default) */
+  --bg-base:#0C0602;
+  --bg-surface:#1A0C04;
+  --bg-card:rgba(26,12,4,0.9);
+  --bg-step:rgba(12,6,2,0.6);
+  --bg-mob:rgba(12,6,2,0.97);
+  --text-primary:#FFF8F0;
+  --text-muted:rgba(255,248,240,0.55);
+  --text-faint:rgba(255,248,240,0.25);
+  --text-chip:rgba(255,248,240,0.7);
+  --border-card:rgba(245,166,35,0.08);
+  --border-step:rgba(245,166,35,0.1);
+  --hero-overlay:linear-gradient(to bottom, rgba(12,6,2,0.35) 0%, rgba(12,6,2,0.55) 40%, rgba(12,6,2,0.85) 80%, #0C0602 100%);
+  --contact-radial:radial-gradient(ellipse at 50% 0%,#2A0D00 0%,#0C0602 65%);
+  --nav-scrolled:rgba(12,6,2,0.88);
+  --nav-border:rgba(245,166,35,0.12);
+  --footer-bg:#070401;
+  --footer-border:rgba(245,166,35,0.08);
+  --slide-overlay-bg:rgba(12,6,2,0.95);
+  --gallery-overlay:rgba(12,6,2,0.55);
+  --chip-bg:rgba(245,166,35,0.08);
+  --chip-border:rgba(245,166,35,0.2);
+  --sl-btn-bg:rgba(245,166,35,0.08);
+  --sl-dot-bg:rgba(245,166,35,0.25);
+  --tab-color:rgba(255,248,240,0.55);
+  --cbtn-bg:rgba(245,166,35,0.08);
+  --cbtn-border:rgba(245,166,35,0.2);
+  --cbtn-hover:rgba(245,166,35,0.18);
+}
+
+/* ── LIGHT THEME ── */
+html.light{
+  --bg-base:#FDF6EE;
+  --bg-surface:#F5EDE0;
+  --bg-card:rgba(255,248,240,0.95);
+  --bg-step:rgba(245,237,224,0.8);
+  --bg-mob:rgba(253,246,238,0.98);
+  --text-primary:#1A0C04;
+  --text-muted:rgba(26,12,4,0.55);
+  --text-faint:rgba(26,12,4,0.3);
+  --text-chip:rgba(26,12,4,0.7);
+  --border-card:rgba(200,130,40,0.15);
+  --border-step:rgba(200,130,40,0.18);
+  --hero-overlay:linear-gradient(to bottom, rgba(12,6,2,0.3) 0%, rgba(12,6,2,0.5) 40%, rgba(12,6,2,0.8) 80%, rgba(12,6,2,0.92) 100%);
+  --contact-radial:radial-gradient(ellipse at 50% 0%,#FFD4A8 0%,#FDF6EE 65%);
+  --nav-scrolled:rgba(253,246,238,0.92);
+  --nav-border:rgba(200,130,40,0.2);
+  --footer-bg:#F0E4D2;
+  --footer-border:rgba(200,130,40,0.15);
+  --slide-overlay-bg:rgba(253,246,238,0.96);
+  --gallery-overlay:rgba(253,246,238,0.6);
+  --chip-bg:rgba(245,166,35,0.1);
+  --chip-border:rgba(245,166,35,0.3);
+  --sl-btn-bg:rgba(245,166,35,0.1);
+  --sl-dot-bg:rgba(200,130,40,0.25);
+  --tab-color:rgba(26,12,4,0.5);
+  --cbtn-bg:rgba(245,166,35,0.08);
+  --cbtn-border:rgba(200,130,40,0.25);
+  --cbtn-hover:rgba(245,166,35,0.2);
+}
+
+html{scroll-behavior:smooth;transition:background .4s}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg-base);color:var(--text-primary);overflow-x:hidden;cursor:none;transition:background .4s,color .4s}
+
+/* CURSOR */
+#cursor{position:fixed;width:14px;height:14px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform 0.15s ease,opacity 0.2s;transform:translate(-50%,-50%)}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(245,166,35,0.5);pointer-events:none;z-index:9998;transition:transform 0.08s ease,width 0.2s,height 0.2s;transform:translate(-50%,-50%)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,backdrop-filter 0.4s}
+nav.scrolled{background:var(--nav-scrolled);backdrop-filter:blur(16px);border-bottom:1px solid var(--nav-border)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.15em;color:var(--gold);text-shadow:0 0 30px rgba(245,166,35,.3)}
+.logo span{color:var(--fire)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-badge{background:var(--fire);color:#fff;padding:.35rem 1rem;border-radius:2rem;font-size:.7rem;letter-spacing:.1em;font-weight:600;animation:badge-pulse 2s infinite}
+@keyframes badge-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,69,0,.5)}50%{box-shadow:0 0 0 10px rgba(255,69,0,0)}}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.ham span{width:24px;height:2px;background:var(--gold);transition:.3s;display:block}
+
+/* MOBILE MENU */
+.mob-menu{display:none;position:fixed;inset:0;z-index:600;background:var(--bg-mob);align-items:center;justify-content:center;flex-direction:column;gap:2.5rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--text-primary);text-decoration:none;transition:.2s;letter-spacing:.1em}
+.mob-menu a:hover{color:var(--gold)}
+.mob-close{position:absolute;top:2rem;right:2.5rem;background:none;border:none;color:var(--gold);font-size:2rem;cursor:pointer}
+
+/* ────── HERO ────── */
+#hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* HERO BACKGROUND IMAGE */
+.hero-bg-img{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1800&auto=format&fit=crop&q=80');
+  background-size:cover;
+  background-position:center 40%;
+  background-repeat:no-repeat;
+  transform:scale(1.05);
+  animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{
+  0%{transform:scale(1.05) translateX(0)}
+  100%{transform:scale(1.12) translateX(-1%)}
+}
+
+.hero-overlay{position:absolute;inset:0;background:var(--hero-overlay)}
+
+/* PARTICLE CANVAS */
+#particle-canvas{position:absolute;inset:0;pointer-events:none;z-index:1}
+
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem}
+.hero-eyebrow{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:0;animation:rise .8s .3s forwards}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,18vw,16rem);line-height:.85;letter-spacing:.04em;position:relative}
+.hero-h1 .line1{display:block;opacity:0;animation:rise 1s .5s forwards;color:var(--text-primary)}
+.hero-h1 .line2{display:block;opacity:0;animation:rise 1s .7s forwards;color:var(--gold);text-shadow:0 0 80px rgba(245,166,35,.4),0 0 160px rgba(255,69,0,.2)}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,248,240,0.9);margin-top:1.5rem;opacity:0;animation:rise .8s .9s forwards;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.hero-chips{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;opacity:0;animation:rise .8s 1.1s forwards}
+.chip{display:flex;align-items:center;gap:.5rem;background:rgba(12,6,2,0.55);backdrop-filter:blur(8px);border:1px solid var(--chip-border);padding:.5rem 1.2rem;border-radius:2rem;font-size:.8rem;color:#fff;letter-spacing:.04em}
+.hero-btns{display:flex;gap:1rem;justify-content:center;margin-top:2.5rem;flex-wrap:wrap;opacity:0;animation:rise .8s 1.3s forwards}
+.btn-fire{background:var(--fire);color:#fff;padding:1rem 2.5rem;border:none;border-radius:4px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .25s,box-shadow .25s}
+.btn-fire:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,69,0,.5)}
+.btn-ghost{background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);color:#fff;border:1.5px solid rgba(255,255,255,0.5);padding:1rem 2.5rem;border-radius:4px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;cursor:pointer;text-decoration:none;display:inline-block;transition:transform .25s,background .25s}
+.btn-ghost:hover{background:rgba(245,166,35,.2);border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+
+.scroll-cue{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,248,240,.4);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;z-index:2}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--gold),transparent)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ────── 3D DISH SLIDER ────── */
+#slider-section{padding:6rem 2rem;background:var(--bg-surface);position:relative;overflow:hidden;transition:background .4s}
+.section-label{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,7vw,6rem);letter-spacing:.05em;line-height:.9;margin-bottom:1rem;color:var(--text-primary)}
+.slider-subtitle{color:var(--text-muted);font-size:.9rem;line-height:1.7;max-width:400px;margin-bottom:3rem}
+
+.slider-stage{position:relative;height:420px;perspective:1200px;overflow:visible;margin:0 auto;max-width:900px}
+.slider-track{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.23,1,.32,1)}
+.slide{position:absolute;top:50%;left:50%;width:300px;height:380px;border-radius:16px;overflow:hidden;transform-style:preserve-3d;cursor:pointer;transition:all .7s cubic-bezier(.23,1,.32,1)}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.slide:hover img{transform:scale(1.06)}
+.slide-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,var(--slide-overlay-bg));transform:translateY(10px);opacity:0;transition:.4s}
+.slide.active .slide-overlay{opacity:1;transform:translateY(0)}
+.slide-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.06em;color:var(--text-primary)}
+.slide-cat{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.slide-desc{font-size:.78rem;color:var(--text-muted);line-height:1.5;margin-top:.4rem}
+
+.slider-controls{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem}
+.sl-btn{width:50px;height:50px;border-radius:50%;background:var(--sl-btn-bg);border:1px solid rgba(245,166,35,.25);color:var(--gold);font-size:1.3rem;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center}
+.sl-btn:hover{background:var(--gold);color:var(--bg-base)}
+.sl-dots{display:flex;gap:.5rem}
+.sl-dot{width:6px;height:6px;border-radius:50%;background:var(--sl-dot-bg);cursor:pointer;transition:.3s}
+.sl-dot.active{background:var(--gold);transform:scale(1.4)}
+
+/* ────── EXPLOSION MENU REVEAL ────── */
+#menu{padding:7rem 2rem;background:var(--bg-base);overflow:hidden;transition:background .4s}
+.menu-intro{text-align:center;margin-bottom:4rem}
+.menu-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.tab{padding:.55rem 1.5rem;border-radius:2rem;border:1px solid rgba(245,166,35,.25);background:transparent;color:var(--tab-color);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.2s;font-family:'Space Grotesk',sans-serif}
+.tab.on,.tab:hover{background:var(--gold);color:var(--bg-base);border-color:var(--gold)}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto}
+.mcard{border-radius:12px;overflow:hidden;background:var(--bg-card);border:1px solid var(--border-card);cursor:pointer;position:relative;opacity:0;transform:translateY(40px) scale(.95);transition:border-color .3s,transform .3s,box-shadow .3s,background .4s}
+.mcard.revealed{opacity:1;transform:translateY(0) scale(1)}
+.mcard:hover{border-color:rgba(245,166,35,.35);box-shadow:0 20px 50px rgba(0,0,0,.2),0 0 0 1px rgba(245,166,35,.1)}
+.mcard-img-wrap{height:210px;overflow:hidden;position:relative}
+.mcard img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.mcard:hover img{transform:scale(1.08)}
+.mcard-tag{position:absolute;top:.75rem;left:.75rem;background:var(--fire);color:#fff;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2rem;font-weight:600}
+.mcard-body{padding:1.25rem}
+.mcard-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;margin-bottom:.4rem;color:var(--text-primary)}
+.mcard-desc{font-size:.78rem;color:var(--text-muted);line-height:1.55}
+
+/* ────── ORDER MODAL AND CART ────── */
+.modal-overlay { position:fixed; inset:0; z-index:900; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; backdrop-filter:blur(5px); }
+.modal-overlay.open { display:flex; }
+.meal-modal-content { background:var(--bg-surface); border:1px solid var(--border-card); border-radius:12px; max-width:450px; width:90%; overflow:hidden; position:relative; display:flex; flex-direction:column; animation: rise 0.4s forwards; }
+.modal-close { position:absolute; top:1rem; right:1rem; background:rgba(0,0,0,0.5); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10; transition: background 0.2s; }
+.modal-close:hover { background:var(--fire); }
+.meal-modal-content img { width:100%; height:280px; object-fit:cover; }
+.mModal-info { padding:1.5rem; }
+.mModal-info h3 { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--gold); margin-bottom:.5rem; letter-spacing:.05em; }
+.mModal-info p { color:var(--text-muted); font-size:.9rem; line-height:1.6; margin-bottom:1.5rem; }
+.mModal-qty { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+.mModal-qty label { font-size:0.9rem; color:var(--text-primary); text-transform:uppercase; letter-spacing:0.1em; }
+.mModal-qty input { width:70px; padding:.6rem; background:var(--bg-base); border:1px solid var(--border-card); color:var(--text-primary); border-radius:4px; text-align:center; font-size:1.1rem; outline:none; }
+.mModal-qty input:focus { border-color:var(--gold); }
+.mModal-btn-wrap { display: flex; justify-content: stretch; }
+.mModal-btn-wrap button { flex: 1; text-align: center; }
+
+/* CART FLOATING BUTTON */
+.cart-btn { position:fixed; bottom:2rem; right:2rem; z-index:800; background:var(--fire); color:#fff; border:none; padding:1rem 1.8rem; border-radius:30px; font-family:'Bebas Neue',sans-serif; font-size:1.2rem; cursor:pointer; box-shadow:0 8px 20px rgba(255,69,0,0.4); display:flex; align-items:center; gap:.5rem; transition:transform 0.2s, box-shadow 0.2s; letter-spacing: .08em; }
+.cart-btn:hover { transform:scale(1.05); box-shadow:0 12px 25px rgba(255,69,0,0.6); }
+
+/* CART SIDEBAR */
+.cart-sidebar { position:fixed; top:0; right:-450px; width:100%; max-width:400px; height:100vh; background:var(--bg-surface); border-left:1px solid var(--border-card); z-index:950; transition:right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display:flex; flex-direction:column; padding:2rem; box-shadow:-10px 0 30px rgba(0,0,0,0.5); }
+.cart-sidebar.open { right:0; }
+.cart-sidebar h3 { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--gold); margin-bottom:1.5rem; letter-spacing:.05em; border-bottom:1px solid var(--border-card); padding-bottom:1rem; }
+.close-cart { position:absolute; top:1.8rem; right:1.5rem; background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; transition: color 0.2s; }
+.close-cart:hover { color:var(--fire); }
+#cartItems { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:1rem; padding-right:0.5rem; }
+.cart-item { display:flex; justify-content:space-between; align-items:center; background:var(--bg-base); padding:1.2rem; border-radius:8px; border:1px solid var(--border-card); }
+.cart-item-info h4 { margin-bottom:.3rem; color:var(--text-primary); font-size:1.1rem; }
+.cart-item-info p { font-size:.85rem; color:var(--text-muted); }
+.remove-item { background:rgba(255,69,0,0.1); border:1px solid rgba(255,69,0,0.3); border-radius: 4px; color:var(--ember); cursor:pointer; font-size:1rem; padding: 0.4rem 0.6rem; transition: background 0.2s; }
+.remove-item:hover { background:rgba(255,69,0,0.2); }
+.checkout-btn { width:100%; margin-top:2rem; text-align:center; padding:1.2rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.empty-cart-msg { text-align:center; color:var(--text-faint); margin-top: 2rem; font-size: 0.9rem; }
+
+
+/* ────── PARALLAX STRIP ────── */
+#strip{height:60px;background:var(--fire);overflow:hidden;display:flex;align-items:center;white-space:nowrap}
+.strip-inner{display:flex;animation:marquee 18s linear infinite;gap:0}
+.strip-item{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.2em;color:#fff;opacity:.9;padding:0 2.5rem;flex-shrink:0}
+.strip-dot{color:rgba(255,255,255,.4)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ────── ORDER STEPS ────── */
+#order{padding:7rem 2rem;background:var(--bg-surface);text-align:center;transition:background .4s}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;max-width:1000px;margin:4rem auto 0}
+.step{padding:2.5rem 1.5rem;border:1px solid var(--border-step);border-radius:12px;background:var(--bg-step);position:relative;overflow:hidden;transition:border-color .3s,transform .4s,background .4s}
+.step:hover{border-color:rgba(245,166,35,.4);transform:translateY(-8px)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(245,166,35,.06);position:absolute;top:-1rem;right:1rem;line-height:1;pointer-events:none}
+.step-icon{font-size:2.2rem;margin-bottom:1rem}
+.step-h{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold);margin-bottom:.6rem}
+.step-p{font-size:.82rem;color:var(--text-muted);line-height:1.6}
+
+/* ────── MASONRY GALLERY ────── */
+#gallery{padding:7rem 2rem;background:var(--bg-base);overflow:hidden;transition:background .4s}
+.gallery-intro{max-width:600px;margin-bottom:3rem}
+.masonry{column-count:3;column-gap:1rem;max-width:1200px;margin:0 auto}
+.mitem{break-inside:avoid;margin-bottom:1rem;border-radius:10px;overflow:hidden;position:relative;cursor:pointer}
+.mitem img{width:100%;display:block;transition:transform .5s}
+.mitem:hover img{transform:scale(1.05)}
+.mitem-overlay{position:absolute;inset:0;background:var(--gallery-overlay);opacity:0;transition:.35s;display:flex;align-items:center;justify-content:center}
+.mitem:hover .mitem-overlay{opacity:1}
+.mitem-overlay span{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.12em;color:#fff}
+
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center}
+#lightbox.open{display:flex}
+#lightbox img{max-width:90vw;max-height:85vh;border-radius:8px;object-fit:contain}
+.lb-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:var(--gold);font-size:2.5rem;cursor:pointer}
+
+/* ────── MAP SECTION ────── */
+#map-section{padding:5rem 2rem;background:var(--bg-surface);transition:background .4s}
+.map-container{max-width:1200px;margin:0 auto}
+.map-intro{text-align:center;margin-bottom:3rem}
+.map-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;align-items:stretch}
+.map-info-card{background:var(--bg-card);border:1px solid var(--border-card);border-radius:16px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem;transition:background .4s}
+.map-info-card h3{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;color:var(--gold);margin-bottom:.25rem}
+.map-detail{display:flex;gap:.85rem;font-size:.88rem;color:var(--text-muted);line-height:1.6;align-items:flex-start}
+.map-detail-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+.map-detail a{color:var(--gold);text-decoration:none}
+.map-detail a:hover{text-decoration:underline}
+.map-directions-btn{display:flex;align-items:center;justify-content:center;gap:.7rem;background:var(--fire);color:#fff;padding:1rem 1.5rem;border-radius:8px;text-decoration:none;font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.1em;transition:transform .25s,box-shadow .25s;margin-top:auto}
+.map-directions-btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,69,0,.4)}
+.map-embed{border-radius:16px;overflow:hidden;border:1px solid var(--border-card);height:400px;position:relative;background:#1a1a1a}
+.map-embed iframe{width:100%;height:100%;border:none;display:block}
+
+/* ────── CONTACT ────── */
+#contact{padding:7rem 2rem;background:var(--contact-radial);text-align:center;transition:background .5s}
+.open-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#4ade80;padding:.5rem 1.2rem;border-radius:2rem;font-size:.8rem;font-weight:500;margin-bottom:2rem;letter-spacing:.06em}
+.green-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:gpulse 1.5s infinite}
+@keyframes gpulse{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}50%{box-shadow:0 0 0 6px rgba(74,222,128,0)}}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:860px;margin:3.5rem auto 0;text-align:left}
+.cblock h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:var(--gold);margin-bottom:1.2rem}
+.crow{display:flex;gap:.75rem;margin-bottom:1rem;font-size:.88rem;color:var(--text-muted);line-height:1.5;align-items:flex-start;transition:color .4s}
+.cicon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+.crow a{color:var(--gold);text-decoration:none}
+.crow a:hover{text-decoration:underline}
+.call-wrap{display:flex;flex-direction:column;gap:.75rem}
+.cbtn{display:flex;align-items:center;gap:.75rem;background:var(--cbtn-bg);border:1.5px solid var(--cbtn-border);color:var(--gold);padding:.9rem 1.25rem;border-radius:8px;text-decoration:none;font-size:1rem;font-weight:500;transition:background .25s,border .25s,transform .25s;letter-spacing:.04em}
+.cbtn:hover{background:var(--cbtn-hover);border-color:var(--gold);transform:translateX(5px)}
+
+/* ────── FOOTER ────── */
+footer{background:var(--footer-bg);padding:2rem;text-align:center;border-top:1px solid var(--footer-border);font-size:.75rem;color:var(--text-faint);letter-spacing:.06em;transition:background .4s}
+footer strong{color:var(--gold)}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle{position:relative;width:52px;height:28px;border-radius:14px;border:none;cursor:pointer;background:rgba(245,166,35,.15);border:1.5px solid rgba(245,166,35,.3);transition:background .4s,border .4s;flex-shrink:0;outline:none}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--gold);transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .3s;transform:translateX(0)}
+html.light .theme-toggle::after{transform:translateX(22px)}
+.theme-toggle .t-icon{position:absolute;top:50%;font-size:.75rem;pointer-events:none;transition:opacity .3s;line-height:1}
+.theme-toggle .t-moon{left:6px;transform:translateY(-50%);opacity:1}
+.theme-toggle .t-sun{right:5px;transform:translateY(-50%);opacity:0}
+html.light .theme-toggle .t-moon{opacity:0}
+html.light .theme-toggle .t-sun{opacity:1}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ GRAB & GO FLOATING WIDGET ══════════ */
+@keyframes ggFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-9px) rotate(-3deg)}}
+@keyframes ggGlow{0%,100%{box-shadow:0 6px 20px rgba(255,69,0,.35),0 0 0 0 rgba(245,166,35,.5)}50%{box-shadow:0 10px 28px rgba(255,69,0,.5),0 0 0 10px rgba(245,166,35,0)}}
+@keyframes ggShine{0%{transform:translateX(-120%) rotate(20deg)}100%{transform:translateX(220%) rotate(20deg)}}
+@keyframes ggBadgeIn{0%{opacity:0;transform:scale(.6) translateY(30px)}70%{transform:scale(1.04) translateY(0)}100%{opacity:1;transform:scale(1) translateY(0)}}
+
+.grabgo-fab{position:fixed;left:1.6rem;bottom:2rem;z-index:800;display:flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,var(--fire),var(--ember));border:1.5px solid rgba(255,248,240,.25);color:#fff;padding:.65rem 1.1rem .65rem .65rem;border-radius:50px;cursor:pointer;overflow:hidden;animation:ggBadgeIn .6s cubic-bezier(.34,1.56,.64,1) .4s both, ggGlow 2.8s ease-in-out 1.2s infinite;transition:transform .25s}
+.grabgo-fab:hover{transform:translateY(-4px) scale(1.03)}
+.grabgo-fab::after{content:'';position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);animation:ggShine 3.2s ease-in-out 1s infinite}
+.grabgo-fab-icon{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;animation:ggFloat 2.6s ease-in-out infinite}
+.grabgo-fab-text{font-family:'Bebas Neue',sans-serif;line-height:1.05;text-align:left;letter-spacing:.04em}
+.grabgo-fab-text small{display:block;font-family:'Space Grotesk',sans-serif;font-size:.55rem;letter-spacing:.18em;color:#FFE3C2;font-weight:600;text-transform:uppercase}
+.grabgo-fab-text span{font-size:1.05rem}
+
+.grabgo-overlay{padding:2rem 1rem;overflow-y:auto}
+.grabgo-modal-content{background:var(--bg-surface);border:1px solid var(--border-card);border-radius:16px;max-width:900px;width:100%;max-height:88vh;overflow-y:auto;position:relative;animation:rise .4s forwards;margin:auto}
+.grabgo-hero{height:260px;background-size:cover;background-position:center;position:relative;border-radius:16px 16px 0 0}
+.grabgo-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,6,2,.92) 5%,rgba(12,6,2,.35) 55%,rgba(12,6,2,.1) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.75rem}
+.grabgo-new-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,69,0,.9);color:#fff;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:.35rem .8rem;border-radius:20px;width:fit-content;margin-bottom:.6rem;animation:gpulse 1.8s infinite}
+.grabgo-hero-overlay h2{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:#fff;letter-spacing:.03em;line-height:1}
+.grabgo-hero-overlay p{color:#FFE3C2;font-size:.85rem;margin-top:.35rem;letter-spacing:.03em}
+.grabgo-body{padding:2rem 2rem 2.5rem}
+.grabgo-h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:1.6rem;color:var(--gold);margin:.3rem 0 .8rem}
+.grabgo-article p{color:var(--text-muted);font-size:.9rem;line-height:1.75;margin-bottom:.9rem}
+.grabgo-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 1.6rem}
+.grabgo-tag{background:var(--chip-bg);border:1px solid var(--chip-border);color:var(--text-chip);font-size:.72rem;letter-spacing:.05em;padding:.4rem .85rem;border-radius:20px}
+.grabgo-info-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:1.5rem;margin:1.5rem 0 2rem}
+.grabgo-info-card{padding:1.5rem;gap:1.1rem}
+.grabgo-info-card .map-directions-btn{font-size:.95rem}
+.grabgo-map-embed{border-radius:12px;overflow:hidden;border:1px solid var(--border-card);height:100%;min-height:260px;background:#1a1a1a}
+.grabgo-map-embed iframe{width:100%;height:100%;border:none;display:block}
+.grabgo-gallery-wrap{margin-top:.5rem}
+.grabgo-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin-top:1rem}
+.grabgo-gallery .mitem img{height:120px;object-fit:cover}
+.grabgo-cta-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.grabgo-cta-row .cbtn{flex:1;min-width:200px;justify-content:center}
+
+@media(max-width:768px){
+  .grabgo-info-grid{grid-template-columns:1fr}
+  .grabgo-hero{height:200px}
+  .grabgo-hero-overlay h2{font-size:2rem}
+  .grabgo-body{padding:1.5rem 1.25rem 2rem}
+  .grabgo-fab-text{display:none}
+  .grabgo-fab{padding:.6rem;border-radius:50%}
+  .grabgo-fab-icon{margin:0}
+  .grabgo-fab::after{display:none}
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links,.nav-badge{display:none}
+  .ham{display:flex}
+  .contact-grid{grid-template-columns:1fr}
+  .masonry{column-count:2}
+  .slider-stage{height:340px}
+  .slide{width:240px;height:300px}
+  .map-grid{grid-template-columns:1fr}
+  .map-embed{height:300px}
+}
+@media(max-width:480px){
+  .masonry{column-count:1}
+  .menu-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#slider-section" onclick="closeMob()">Menu</a>
+  <a href="#order" onclick="closeMob()">Order</a>
+  <a href="#gallery" onclick="closeMob()">Gallery</a>
+  <a href="#map-section" onclick="closeMob()">Find Us</a>
+  <a href="javascript:void(0)" onclick="closeMob();openGrabGo()">Grab &amp; Go <small style="font-size:.55em;vertical-align:middle;color:var(--fire)">● NEW</small></a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="logo">Kiki's <span>Place</span></div>
+  <ul class="nav-links">
+    <li><a href="#slider-section">Menu</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#map-section">Find Us</a></li>
+    <li><a href="javascript:void(0)" onclick="openGrabGo()" style="color:var(--gold)">Grab &amp; Go 🔥</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-badge">Open 24hrs</div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+    <span class="t-icon t-moon">🌙</span>
+    <span class="t-icon t-sun">☀️</span>
+  </button>
+  <div class="ham" onclick="openMob()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">🔥 Ruiru's Hottest Spot · 2nd Sunrise Avenue</p>
+    <h1 class="hero-h1">
+      <span class="line1">KIKI'S</span>
+      <span class="line2">PLACE</span>
+    </h1>
+    <p class="hero-tag">Home of Delicacies — Grilled, Fried &amp; Flavoured to Perfection</p>
+    <div class="hero-chips">
+      <div class="chip">📍 Near Rainbow Resort, Ruiru</div>
+      <div class="chip">🕐 Open 24 Hours</div>
+      <div class="chip">🛵 Free Home Delivery</div>
+    </div>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-fire">View Full Menu</a>
+      <a href="tel:0710394824" class="btn-ghost">📞 Call Us</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ══ MARQUEE STRIP ══ -->
+<div id="strip">
+  <div class="strip-inner">
+    <span class="strip-item">PORK BBQ</span><span class="strip-dot">◆</span>
+    <span class="strip-item">CHICKEN BBQ</span><span class="strip-dot">◆</span>
+    <span class="strip-item">FISH FRY</span><span class="strip-dot">◆</span>
+    <span class="strip-item">BEEF FRY</span><span class="strip-dot">◆</span>
+    <span class="strip-item">KUKU KIENYEJI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">SHAWARMA</span><span class="strip-dot">◆</span>
+    <span class="strip-item">BIRYANI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">PILAU</span><span class="strip-dot">◆</span>
+    <span class="strip-item">CHAPATI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">UGALI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">CHIPS</span><span class="strip-dot">◆</span>
+    <span class="strip-item">PIZZA</span><span class="strip-dot">◆</span>
+    <span class="strip-item">FREE DELIVERY</span><span class="strip-dot">◆</span>
+    <span class="strip-item">OPEN 24HRS</span><span class="strip-dot">◆</span>
+    <span class="strip-item">PORK BBQ</span><span class="strip-dot">◆</span>
+    <span class="strip-item">CHICKEN BBQ</span><span class="strip-dot">◆</span>
+    <span class="strip-item">FISH FRY</span><span class="strip-dot">◆</span>
+    <span class="strip-item">BEEF FRY</span><span class="strip-dot">◆</span>
+    <span class="strip-item">KUKU KIENYEJI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">SHAWARMA</span><span class="strip-dot">◆</span>
+    <span class="strip-item">BIRYANI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">PILAU</span><span class="strip-dot">◆</span>
+    <span class="strip-item">CHAPATI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">UGALI</span><span class="strip-dot">◆</span>
+    <span class="strip-item">CHIPS</span><span class="strip-dot">◆</span>
+    <span class="strip-item">PIZZA</span><span class="strip-dot">◆</span>
+    <span class="strip-item">FREE DELIVERY</span><span class="strip-dot">◆</span>
+    <span class="strip-item">OPEN 24HRS</span><span class="strip-dot">◆</span>
+  </div>
+</div>
+
+<!-- ══ 3D SLIDER ══ -->
+<section id="slider-section">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="reveal">
+      <p class="section-label">Star Dishes</p>
+      <h2 class="section-title">Our Specialities</h2>
+      <p class="slider-subtitle">Swipe through our most-loved dishes — made fresh, served hot, available round the clock.</p>
+    </div>
+    <div class="slider-stage" id="sliderStage">
+      <div class="slider-track" id="sliderTrack"></div>
+    </div>
+    <div class="slider-controls">
+      <button class="sl-btn" onclick="slPrev()">&#8592;</button>
+      <div class="sl-dots" id="slDots"></div>
+      <button class="sl-btn" onclick="slNext()">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FULL MENU ══ -->
+<section id="menu">
+  <div class="menu-intro reveal">
+    <p class="section-label">Full Menu</p>
+    <h2 class="section-title">Everything We Serve</h2>
+    <p style="color:var(--text-muted);font-size:.9rem;line-height:1.7;max-width:500px;margin:.75rem auto 0">Click on any meal to customize your order and add it to your list.</p>
+  </div>
+  <div class="menu-tabs">
+    <button class="tab on" onclick="filterM('all',this)">All</button>
+    <button class="tab" onclick="filterM('main',this)">Main Dishes</button>
+    <button class="tab" onclick="filterM('acc',this)">Accompaniments</button>
+    <button class="tab" onclick="filterM('snack',this)">Snacks &amp; More</button>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- ══ ORDER STEPS ══ -->
+<section id="order">
+  <div class="reveal">
+    <p class="section-label">Easy &amp; Fast</p>
+    <h2 class="section-title">How to Order</h2>
+    <p style="color:var(--text-muted);max-width:480px;margin:.75rem auto 0;font-size:.9rem;line-height:1.7">Eat in, take away, or get it delivered. Ordering from Kiki's Place is always fast and simple.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">📋</div>
+      <h3 class="step-h">Pick Your Dish</h3>
+      <p class="step-p">Click on any item on our menu above to select your preferred quantity and add it to your cart.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-icon">📱</div>
+      <h3 class="step-h">Send Your Order</h3>
+      <p class="step-p">Click the <strong>Order</strong> button at the bottom of your screen to review and send directly to our WhatsApp.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-icon">🛵</div>
+      <h3 class="step-h">Free Delivery</h3>
+      <p class="step-p">We deliver free to your door, office, or hostel — hot and fresh every single time.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-icon">🔥</div>
+      <h3 class="step-h">Dig In!</h3>
+      <p class="step-p">Real food made with real fire. You'll keep coming back for more.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section id="gallery">
+  <div class="gallery-intro reveal">
+    <p class="section-label">From Our Kitchen</p>
+    <h2 class="section-title">Food Gallery</h2>
+    <p style="color:var(--text-muted);font-size:.9rem;line-height:1.7">A glimpse of the flavours waiting for you at Kiki's Place.</p>
+  </div>
+  <div class="masonry" id="galleryGrid"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox"><button class="lb-close" onclick="closeLB()">✕</button><img id="lbImg" src="" alt=""></div>
+
+<!-- ══ MAP SECTION ══ -->
+<section id="map-section">
+  <div class="map-container">
+    <div class="map-intro reveal">
+      <p class="section-label">Directions</p>
+      <h2 class="section-title">Find Kiki's Place</h2>
+      <p style="color:var(--text-muted);font-size:.9rem;line-height:1.7;max-width:480px;margin:.75rem auto 0">We're easy to find — right near Rainbow Resort on 2nd Sunrise Avenue, Ruiru. Come hungry.</p>
+    </div>
+    <div class="map-grid reveal">
+      <div class="map-info-card">
+        <div>
+          <h3>📍 Our Location</h3>
+          <p style="color:var(--text-muted);font-size:.82rem;margin-top:.3rem">2nd Sunrise Avenue, Ruiru</p>
+        </div>
+        <div class="map-detail">
+          <span class="map-detail-icon">🏠</span>
+          <span>2nd Sunrise Avenue, Ruiru<br>Near Rainbow Resort<br>Kiambu County, Kenya</span>
+        </div>
+        <div class="map-detail">
+          <span class="map-detail-icon">🕐</span>
+          <span>Open <strong style="color:var(--gold)">24 Hours</strong>, 7 Days a Week — we never close.</span>
+        </div>
+        <div class="map-detail">
+          <span class="map-detail-icon">📞</span>
+          <span><a href="tel:0710394824">0710 394 824</a> · <a href="tel:0719518191">0719 518 191</a></span>
+        </div>
+        <div class="map-detail">
+          <span class="map-detail-icon">🛵</span>
+          <span><strong style="color:var(--gold)">Free delivery</strong> within Ruiru — call to order now.</span>
+        </div>
+        <!-- UPDATED MAP PIN LINK HERE -->
+        <a href="https://maps.app.goo.gl/nJaj49YbYNDKyFpw5" target="_blank" class="map-directions-btn">
+          🗺️ Open in Google Maps
+        </a>
+      </div>
+      <div class="map-embed">
+        <!-- Google Maps embed for Ruiru, Kiambu County, Kenya -->
+        <iframe
+          src="https://www.google.com/maps?q=RXX8%2BC5+Ruiru&output=embed&z=17"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Kiki's Place — RXX8+C5, 2nd Sunrise Avenue, Ruiru">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="reveal" style="display:flex;flex-direction:column;align-items:center">
+    <div class="open-pill"><div class="green-dot"></div>Open Right Now — 24 Hours</div>
+    <p class="section-label">Reach Us</p>
+    <h2 class="section-title">Call to Order</h2>
+  </div>
+  <div class="contact-grid">
+    <div class="cblock reveal">
+      <h3>📍 Location</h3>
+      <div class="crow"><span class="cicon">🏠</span><span>2nd Sunrise Avenue, Ruiru<br>Near Rainbow Resort<br>Kiambu County, Kenya</span></div>
+      <div class="crow"><span class="cicon">🕐</span><span>Open <strong style="color:var(--gold)">24 Hours</strong>, 7 Days a Week — No closing time, ever.</span></div>
+      <div class="crow"><span class="cicon">🛵</span><span><strong style="color:var(--gold)">Free Home Delivery</strong> within Ruiru area</span></div>
+      <div class="crow"><span class="cicon">🍖</span><span>Butchery · BBQ · Full Restaurant · Street Food</span></div>
+    </div>
+    <div class="cblock reveal">
+      <h3>📞 Call to Order</h3>
+      <div class="call-wrap">
+        <a class="cbtn" href="tel:0710394824">📞 0710 394 824</a>
+        <a class="cbtn" href="tel:0719518191">📞 0719 518 191</a>
+        <a class="cbtn" href="https://wa.me/254710394824" target="_blank">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>Kiki's Place</strong> — Home of Delicacies · 2nd Sunrise Ave, Near Rainbow Resort, Ruiru · All Rights Reserved</p>
+  <p style="margin-top:.5rem">Made with 🔥 for the best food in Ruiru</p>
+</footer>
+
+<!-- ══ CART SYSTEM HTML ══ -->
+<!-- ══ GRAB & GO FLOATING BADGE ══ -->
+<button id="grabgoFab" class="grabgo-fab" onclick="openGrabGo()" aria-label="See our new Grab & Go branch">
+  <span class="grabgo-fab-icon">🏪</span>
+  <span class="grabgo-fab-text"><small>New Branch</small><span>Grab &amp; Go</span></span>
+</button>
+
+<!-- ══ GRAB & GO MODAL ══ -->
+<div id="grabgoModal" class="modal-overlay grabgo-overlay" onclick="closeGrabGo(event)">
+  <div class="grabgo-modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeGrabGo()">✕</button>
+
+    <div class="grabgo-hero" style="background-image:url('images/grab-and-go/grabgo-3.jpg')">
+      <div class="grabgo-hero-overlay">
+        <span class="grabgo-new-badge">● New Branch — Open Now</span>
+        <h2>Kiki's Grab &amp; Go</h2>
+        <p>Molen Avenue, Ruiru &nbsp;·&nbsp; Open 24 Hours</p>
+      </div>
+    </div>
+
+    <div class="grabgo-body">
+      <div class="grabgo-article">
+        <p class="section-label" style="text-align:left;margin-bottom:.3rem">From The Owner</p>
+        <h3 class="grabgo-h3">Same Fire, Now Faster</h3>
+        <p>Craving our pizza, shawarma, or loaded fries but short on time? We've got you covered. Kiki's Grab &amp; Go is our brand-new roadside stall on Molen Avenue, Ruiru — same recipes, same 24-hour hustle, just built for anyone in a hurry.</p>
+        <p>Swing by on your way to work, after a night out, or whenever the craving hits. Pull up, grab your order hot off the grill, and get going — no sit-down required.</p>
+        <div class="grabgo-tags">
+          <span class="grabgo-tag">🍕 Pizza</span>
+          <span class="grabgo-tag">🌯 Shawarma</span>
+          <span class="grabgo-tag">🍔 Burgers</span>
+          <span class="grabgo-tag">🌭 Hotdogs</span>
+          <span class="grabgo-tag">🍗 Chicken &amp; BBQ</span>
+          <span class="grabgo-tag">🥩 Pork &amp; Sausages</span>
+          <span class="grabgo-tag">🍟 Chips</span>
+          <span class="grabgo-tag">🥟 Samosas</span>
+        </div>
+      </div>
+
+      <div class="grabgo-info-grid">
+        <div class="map-info-card grabgo-info-card">
+          <div>
+            <h3>📍 Grab &amp; Go Branch</h3>
+            <p style="color:var(--text-muted);font-size:.82rem;margin-top:.3rem">Molen Avenue, Ruiru</p>
+          </div>
+          <div class="map-detail">
+            <span class="map-detail-icon">🏠</span>
+            <span>Molen Avenue, Ruiru<br>Plus Code: RXX6+HQ Ruiru<br>Kiambu County, Kenya</span>
+          </div>
+          <div class="map-detail">
+            <span class="map-detail-icon">🕐</span>
+            <span>Open <strong style="color:var(--gold)">24 Hours</strong>, 7 Days a Week — grab it any time, day or night.</span>
+          </div>
+          <div class="map-detail">
+            <span class="map-detail-icon">📞</span>
+            <span><a href="tel:0719518191">0719 518 191</a></span>
+          </div>
+          <div class="map-detail">
+            <span class="map-detail-icon">🛵</span>
+            <span>Quick pickup and <strong style="color:var(--gold)">delivery</strong> around Ruiru — call or WhatsApp to order.</span>
+          </div>
+          <a href="https://www.google.com/maps?q=Molen+Avenue+Ruiru" target="_blank" class="map-directions-btn">
+            🗺️ Get Directions
+          </a>
+        </div>
+        <div class="grabgo-map-embed">
+          <iframe
+            src="https://www.google.com/maps?q=RXX6%2BHQ+Ruiru&output=embed&z=17"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Kiki's Grab & Go — Molen Avenue, Ruiru">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="grabgo-gallery-wrap">
+        <p class="section-label" style="text-align:left;margin-bottom:.3rem">Sneak Peek</p>
+        <h3 class="grabgo-h3">Inside The Stall</h3>
+        <div class="grabgo-gallery" id="grabgoGallery"></div>
+      </div>
+
+      <div class="grabgo-cta-row">
+        <a class="cbtn" href="tel:0719518191">📞&nbsp; Call the Grab &amp; Go</a>
+        <a class="cbtn" href="https://wa.me/254719518191?text=Hi%20Kiki's%20Grab%20%26%20Go!%20I'd%20like%20to%20order..." target="_blank">💬&nbsp; Order on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="cartBtn" class="cart-btn" onclick="toggleCart()">
+  🛒 Order (<span id="cartCount">0</span>)
+</button>
+
+<div id="cartSidebar" class="cart-sidebar">
+  <button class="close-cart" onclick="toggleCart()">✕</button>
+  <h3>Your Order List</h3>
+  <div id="cartItems">
+    <div class="empty-cart-msg">Your cart is currently empty. Click on a meal from the menu to start ordering!</div>
+  </div>
+  <button class="btn-fire checkout-btn" onclick="checkout()">💬 Send via WhatsApp</button>
+</div>
+
+<!-- ══ MEAL ORDER MODAL ══ -->
+<div id="mealModal" class="modal-overlay" onclick="closeMealModal(event)">
+  <div class="meal-modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeMealModal(event)">✕</button>
+    <img id="mModalImg" src="" alt="">
+    <div class="mModal-info">
+      <h3 id="mModalName">Meal Name</h3>
+      <p id="mModalDesc">Meal description goes here.</p>
+      <div class="mModal-qty">
+        <label>Quantity:</label>
+        <input type="number" id="mModalQty" value="1" min="1">
+      </div>
+      <div class="mModal-btn-wrap">
+        <button class="btn-fire" onclick="addToOrder()">Add to Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ------------------------------------------------------------------
+// ACCURATE FOOD IMAGE MAPPING — verified Unsplash IDs for each dish
+// ------------------------------------------------------------------
+const BASE = "https://images.unsplash.com/";
+
+const getDishImage = (name) => {
+  const map = {
+    "Beef Fry":       "photo-1544025162-d76694265947?w=600&h=400&fit=crop&q=80",
+    "Chicken BBQ":    "photo-1532980400857-e8d9d275d858?w=600&h=400&fit=crop&q=80",
+    "Fish Fry":       "photo-1519708227418-c8fd9a32b7a2?w=600&h=400&fit=crop&q=80",
+    "Kuku Kienyeji":  "photo-1603496987351-f84a3ba5ec85?w=600&h=400&fit=crop&q=80",
+    "Pork BBQ":       "photo-1529193591184-b1d58069ecdd?w=600&h=400&fit=crop&q=80",
+    "Pork Fry":       "photo-1432139509613-5c4255815697?w=600&h=400&fit=crop&q=80",
+    "Shawarma":       "photo-1662116765994-1e4200c43589?w=600&h=400&fit=crop&q=80",
+    "Drumstix":       "photo-1527477396000-e27163b481c2?w=600&h=400&fit=crop&q=80",
+    "Biryani":        "photo-1563379091339-03b21ab4a4f8?w=600&h=400&fit=crop&q=80",
+    "Chapati":        "photo-1604908176997-125f25cc6f3d?w=600&h=400&fit=crop&q=80",
+    "Chips":          "photo-1573080496219-bb080dd4f877?w=600&h=400&fit=crop&q=80",
+    "Pilau":          "photo-1694579740719-0e601c5d2437?w=600&h=400&fit=crop&q=80",
+    "Ugali":          "photo-1567337710282-00832b415979?w=600&h=400&fit=crop&q=80",
+    "Vegetable Rice": "photo-1512058564366-18510be2db19?w=600&h=400&fit=crop&q=80",
+    "Pizza":          "photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop&q=80",
+  };
+  return BASE + (map[name] || "photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop&q=80");
+};
+
+const getSliderImage = (name) => {
+  const sliderMap = {
+    "Beef Fry":      "photo-1544025162-d76694265947?w=600&h=450&fit=crop&q=80",
+    "Chicken BBQ":   "photo-1532980400857-e8d9d275d858?w=600&h=450&fit=crop&q=80",
+    "Fish Fry":      "photo-1519708227418-c8fd9a32b7a2?w=600&h=450&fit=crop&q=80",
+    "Kuku Kienyeji": "photo-1603496987351-f84a3ba5ec85?w=600&h=450&fit=crop&q=80",
+    "Pork BBQ":      "photo-1529193591184-b1d58069ecdd?w=600&h=450&fit=crop&q=80",
+    "Biryani":       "photo-1563379091339-03b21ab4a4f8?w=600&h=450&fit=crop&q=80",
+    "Shawarma":      "photo-1662116765994-1e4200c43589?w=600&h=450&fit=crop&q=80",
+  };
+  return BASE + (sliderMap[name] || "photo-1546069901-ba9599a7e63c?w=600&h=450&fit=crop&q=80");
+};
+
+// Gallery
+const galleryImages = [
+  "photo-1529193591184-b1d58069ecdd?w=500&h=600&fit=crop&q=80",
+  "photo-1532980400857-e8d9d275d858?w=500&h=700&fit=crop&q=80",
+  "photo-1563379091339-03b21ab4a4f8?w=500&h=500&fit=crop&q=80",
+  "photo-1519708227418-c8fd9a32b7a2?w=500&h=650&fit=crop&q=80",
+  "photo-1662116765994-1e4200c43589?w=500&h=550&fit=crop&q=80",
+  "photo-1573080496219-bb080dd4f877?w=500&h=600&fit=crop&q=80",
+  "photo-1603496987351-f84a3ba5ec85?w=500&h=700&fit=crop&q=80",
+  "photo-1544025162-d76694265947?w=500&h=500&fit=crop&q=80",
+];
+
+// MENU DATA — UPDATED
+const dishes = [
+  {name:"Beef Fry",cat:"main",tag:"🥩 Main",imgKey:"Beef Fry",desc:"Tender beef cubes slow-fried with aromatic spices, onions & bay leaves."},
+  {name:"Biryani",cat:"acc",tag:"🍚 Accomp.",imgKey:"Biryani",desc:"Fragrant basmati with chicken & whole spices — a meal in itself."},
+  {name:"Chapati",cat:"acc",tag:"🫓 Accomp.",imgKey:"Chapati",desc:"Soft layered flatbreads golden-fried on the griddle. Kenyan classic."},
+  {name:"Chicken BBQ",cat:"main",tag:"🍗 Main",imgKey:"Chicken BBQ",desc:"Whole chicken marinated in smoky rub and grilled over open fire. Resembles chicken tikka."},
+  {name:"Chips",cat:"acc",tag:"🍟 Accomp.",imgKey:"Chips",desc:"Thick-cut golden fries, crispy outside, fluffy inside. Always fresh."},
+  {name:"Drumstix",cat:"main",tag:"🍗 Main",imgKey:"Drumstix",desc:"Crispy fried & sauced chicken drumsticks, hot out of the fryer."},
+  {name:"Fish Fry",cat:"main",tag:"🐟 Main",imgKey:"Fish Fry",desc:"Whole fish with chili-spice crust, fried crispy. Served with lime & sauce."},
+  {name:"Kuku Kienyeji",cat:"main",tag:"🍗 Main",imgKey:"Kuku Kienyeji",desc:"Free-range chicken slow-cooked in rich tomato & herb stew. A true Kenyan classic."},
+  {name:"Pilau",cat:"acc",tag:"🍚 Accomp.",imgKey:"Pilau",desc:"A Kenyan dish made from rice and diced beef almost similar to biryani."},
+  {name:"Pizza",cat:"snack",tag:"🍕 Snack",imgKey:"Pizza",desc:"Loaded pepperoni & mushroom pizza with mozzarella. A crowd pleaser."},
+  {name:"Pork BBQ",cat:"main",tag:"🥩 Main",imgKey:"Pork BBQ",desc:"Juicy pork skewers grilled over charcoal with a caramelised smoky glaze."},
+  {name:"Pork Fry",cat:"main",tag:"🥩 Main",imgKey:"Pork Fry",desc:"Crispy pork belly chunks — golden and glazed. The ultimate indulgence."},
+  {name:"Shawarma",cat:"main",tag:"🌯 Main",imgKey:"Shawarma",desc:"Seasoned rotisserie meat wrapped with fresh veggies in a soft flatbread."},
+  {name:"Ugali",cat:"acc",tag:"🫶 Accomp.",imgKey:"Ugali",desc:"A Kenyan dish that is made of corn flour."},
+  {name:"Vegetable Rice",cat:"acc",tag:"🥦 Accomp.",imgKey:"Vegetable Rice",desc:"Basmati tossed with peas, carrots, corn & green beans. Light and wholesome."},
+];
+
+const sliderDishes = [
+  {name:"Beef Fry",cat:"Main Dish",imgKey:"Beef Fry",desc:"Slow-fried beef with aromatic spices & bay leaves"},
+  {name:"Chicken BBQ",cat:"Main Dish",imgKey:"Chicken BBQ",desc:"Smoky grilled whole chicken. Resembles chicken tikka."},
+  {name:"Fish Fry",cat:"Main Dish",imgKey:"Fish Fry",desc:"Crispy whole fish with chili-spice crust"},
+  {name:"Kuku Kienyeji",cat:"Main Dish",imgKey:"Kuku Kienyeji",desc:"Free-range chicken in rich tomato stew"},
+  {name:"Pork BBQ",cat:"Main Dish",imgKey:"Pork BBQ",desc:"Caramelised pork skewers on charcoal"},
+  {name:"Biryani",cat:"Accompaniment",imgKey:"Biryani",desc:"Fragrant spiced basmati with chicken"},
+  {name:"Shawarma",cat:"Main Dish",imgKey:"Shawarma",desc:"Rotisserie meat in a soft flatbread wrap"},
+];
+
+/* ─── CART SYSTEM LOGIC ─── */
+let cart = [];
+let currentDish = null;
+
+function openMealModal(dishObj) {
+  currentDish = dishObj;
+  document.getElementById('mModalImg').src = getDishImage(dishObj.imgKey);
+  document.getElementById('mModalName').innerText = dishObj.name;
+  document.getElementById('mModalDesc').innerText = dishObj.desc;
+  document.getElementById('mModalQty').value = 1;
+  document.getElementById('mealModal').classList.add('open');
+}
+
+function closeMealModal(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('mealModal').classList.remove('open');
+  currentDish = null;
+}
+
+function addToOrder() {
+  if(!currentDish) return;
+  const qty = parseInt(document.getElementById('mModalQty').value);
+  if(qty < 1 || isNaN(qty)) return;
+  
+  const existing = cart.find(item => item.name === currentDish.name);
+  if(existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name: currentDish.name, qty: qty });
+  }
+  
+  updateCartUI();
+  closeMealModal();
+  
+  // Show the cart momentarily to confirm addition
+  const sidebar = document.getElementById('cartSidebar');
+  if(!sidebar.classList.contains('open')) {
+    toggleCart();
+    setTimeout(() => { if(sidebar.classList.contains('open')) toggleCart() }, 1800);
+  }
+}
+
+function updateCartUI() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartCount').innerText = count;
+  
+  const container = document.getElementById('cartItems');
+  container.innerHTML = '';
+  
+  if(cart.length === 0) {
+    container.innerHTML = '<div class="empty-cart-msg">Your cart is currently empty. Click on a meal from the menu to start ordering!</div>';
+    return;
+  }
+
+  cart.forEach((item, idx) => {
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <div class="cart-item-info">
+        <h4>${item.name}</h4>
+        <p>Quantity: ${item.qty}</p>
+      </div>
+      <button class="remove-item" onclick="removeFromCart(${idx})" title="Remove item">✕</button>
+    `;
+    container.appendChild(el);
+  });
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  updateCartUI();
+}
+
+function toggleCart() {
+  document.getElementById('cartSidebar').classList.toggle('open');
+}
+
+function checkout() {
+  if(cart.length === 0) {
+    alert("Please add some items to your order list first.");
+    toggleCart(); // Close sidebar if open
+    return;
+  }
+  let text = "Hello Kiki's Place, I'd like to place an order from your website:\n\n";
+  cart.forEach(item => {
+    text += `* ${item.qty}x ${item.name}\n`;
+  });
+  text += "\nPlease let me know the total price and delivery process. Thanks!";
+  const encodedText = encodeURIComponent(text);
+  window.open(`https://wa.me/254710394824?text=${encodedText}`, '_blank');
+}
+
+
+/* ─── CUSTOM CURSOR ─── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button,.mcard,.mitem,.sl-btn,.tab').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2)';ring.style.width='60px';ring.style.height='60px'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.width='40px';ring.style.height='40px'});
+});
+
+/* ─── NAV SCROLL ─── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+});
+
+/* ─── HERO PARTICLES (fire embers) ─── */
+const canvas=document.getElementById('particle-canvas');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+function Particle(){
+  this.reset=function(){
+    this.x=Math.random()*W;
+    this.y=H+10;
+    this.vy=-(1+Math.random()*2.5);
+    this.vx=(Math.random()-.5)*0.8;
+    this.life=0;
+    this.maxLife=120+Math.random()*120;
+    this.r=1+Math.random()*3;
+    this.hue=Math.random()>0.5?30:15;
+  };
+  this.reset();
+  this.y=Math.random()*H;
+  this.life=Math.random()*this.maxLife;
+}
+for(let i=0;i<60;i++)particles.push(new Particle());
+function drawParticles(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.life++;
+    if(p.life>p.maxLife)p.reset();
+    const a=Math.sin((p.life/p.maxLife)*Math.PI)*0.6;
+    ctx.save();
+    ctx.globalAlpha=a;
+    ctx.fillStyle=`hsl(${p.hue},100%,60%)`;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* ─── 3D SLIDER ─── */
+let slIdx=0;
+const track=document.getElementById('sliderTrack');
+const dotsEl=document.getElementById('slDots');
+const N=sliderDishes.length;
+
+sliderDishes.forEach((d,i)=>{
+  const card=document.createElement('div');
+  card.className='slide';
+  const imgSrc = getSliderImage(d.imgKey);
+  card.innerHTML=`<img src="${imgSrc}" alt="${d.name}" loading="lazy"><div class="slide-overlay"><p class="slide-cat">${d.cat}</p><p class="slide-name">${d.name}</p><p class="slide-desc">${d.desc}</p></div>`;
+  card.addEventListener('click',()=>setSlide(i));
+  track.appendChild(card);
+
+  const dot=document.createElement('div');
+  dot.className='sl-dot'+(i===0?' active':'');
+  dot.addEventListener('click',()=>setSlide(i));
+  dotsEl.appendChild(dot);
+});
+
+function setSlide(idx){
+  slIdx=((idx%N)+N)%N;
+  const slides=track.querySelectorAll('.slide');
+  const dots=dotsEl.querySelectorAll('.sl-dot');
+  slides.forEach((s,i)=>{
+    const diff=i-slIdx;
+    const angle=diff*38;
+    const z=Math.abs(diff)===0?0:-180*Math.abs(diff);
+    const scale=Math.abs(diff)===0?1:Math.abs(diff)===1?0.78:0.58;
+    const tx=diff*260;
+    const opacity=Math.abs(diff)>2?0:Math.abs(diff)===0?1:Math.abs(diff)===1?0.6:0.3;
+    s.style.transform=`translate(-50%,-50%) translateX(${tx}px) translateZ(${z}px) rotateY(${angle}deg) scale(${scale})`;
+    s.style.opacity=opacity;
+    s.style.zIndex=100-Math.abs(diff);
+    s.classList.toggle('active',i===slIdx);
+  });
+  dots.forEach((d,i)=>d.classList.toggle('active',i===slIdx));
+}
+setSlide(0);
+function slNext(){setSlide(slIdx+1);}
+function slPrev(){setSlide(slIdx-1);}
+setInterval(slNext,4000);
+
+/* ─── MENU GRID ─── */
+function renderMenu(filter){
+  const grid=document.getElementById('menuGrid');
+  const items=filter==='all'?dishes:dishes.filter(d=>d.cat===filter);
+  grid.innerHTML='';
+  items.forEach((d,i)=>{
+    const c=document.createElement('div');
+    c.className='mcard';
+    c.onclick = () => openMealModal(d); // Hooked up the new ordering modal
+    const imgUrl = getDishImage(d.imgKey);
+    c.innerHTML=`<div class="mcard-img-wrap"><img src="${imgUrl}" alt="${d.name}" loading="lazy"><span class="mcard-tag">${d.tag}</span></div><div class="mcard-body"><div class="mcard-name">${d.name}</div><p class="mcard-desc">${d.desc}</p></div>`;
+    grid.appendChild(c);
+    setTimeout(()=>{c.classList.add('revealed');},i*70);
+  });
+}
+
+function filterM(cat,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  renderMenu(cat);
+}
+renderMenu('all');
+
+/* ─── GALLERY ─── */
+const gg=document.getElementById('galleryGrid');
+galleryImages.forEach(src=>{
+  const w=document.createElement('div');w.className='mitem';
+  const img=document.createElement('img');img.src=BASE+src;img.alt="Kiki's Place food";img.loading='lazy';
+  const ov=document.createElement('div');ov.className='mitem-overlay';ov.innerHTML='<span>View</span>';
+  w.appendChild(img);w.appendChild(ov);
+  w.addEventListener('click',()=>openLB(BASE+src));
+  gg.appendChild(w);
+});
+
+/* ─── LIGHTBOX ─── */
+function openLB(src){document.getElementById('lbImg').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLB(){document.getElementById('lightbox').classList.remove('open');}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLB();});
+
+/* ─── SCROLL REVEAL ─── */
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* ─── MOBILE NAV ─── */
+function openMob(){document.getElementById('mobMenu').classList.add('open');document.body.style.overflow='hidden';}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');document.body.style.overflow='';}
+
+/* ─── GRAB & GO MODAL ─── */
+const grabgoImages=[
+  'images/grab-and-go/grabgo-3.jpg',
+  'images/grab-and-go/grabgo-2.jpg',
+  'images/grab-and-go/grabgo-9.jpg',
+  'images/grab-and-go/grabgo-4.jpg',
+  'images/grab-and-go/grabgo-5.jpg',
+  'images/grab-and-go/grabgo-6.jpg',
+  'images/grab-and-go/grabgo-8.jpg',
+  'images/grab-and-go/grabgo-1.jpg',
+  'images/grab-and-go/grabgo-7.jpg'
+];
+const ggGrid=document.getElementById('grabgoGallery');
+if(ggGrid){
+  grabgoImages.forEach(src=>{
+    const w=document.createElement('div');w.className='mitem';
+    const img=document.createElement('img');img.src=src;img.alt="Kiki's Grab & Go";img.loading='lazy';
+    const ov=document.createElement('div');ov.className='mitem-overlay';ov.innerHTML='<span>View</span>';
+    w.appendChild(img);w.appendChild(ov);
+    w.addEventListener('click',()=>openLB(src));
+    ggGrid.appendChild(w);
+  });
+}
+function openGrabGo(){document.getElementById('grabgoModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeGrabGo(e){
+  if(e) e.stopPropagation();
+  document.getElementById('grabgoModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ─── CARD STAGGER ON SCROLL ─── */
+const cardObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const cards=document.querySelectorAll('.mcard:not(.revealed)');
+      cards.forEach((c,i)=>setTimeout(()=>c.classList.add('revealed'),i*60));
+    }
+  });
+},{threshold:0.05});
+const mg=document.getElementById('menuGrid');
+if(mg)cardObserver.observe(mg);
+
+/* ─── THEME TOGGLE ─── */
+const html = document.documentElement;
+const toggleBtn = document.getElementById('themeToggle');
+const saved = localStorage.getItem('kiki-theme');
+if(saved === 'light') html.classList.add('light');
+
+toggleBtn.addEventListener('click', () => {
+  html.classList.toggle('light');
+  localStorage.setItem('kiki-theme', html.classList.contains('light') ? 'light' : 'dark');
+});
+</script>
+</body>
+</html>
